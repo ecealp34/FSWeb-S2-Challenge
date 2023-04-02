@@ -75,20 +75,35 @@ function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
-
-
+let para1 = "Hello World!"
+	
+console.log(cumleKur(para1))
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
+let para2 = ""
 
+let para3 = "Hello World!"
+
+console.log(cumleKur(para2, para3))
 
 
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
 
-/* kodlar buraya */
+let x = "Ben "
+let y = "iyi "
+let z = "bir "
+let a = "yazılımcı "
+let b = "olacağım!"
 
+console.log(cumleKur(x, y, z, a, b))
 
+bircumle = function cumleKur() {
+	return x + y + z + a + b
+}
+
+console.log(bircumle)
 
 //		Sayfanın en üstünde global olarak tanımlanmış `cumleler` adında bir dizi bulunmaktadır. Bu dizinin içinde en çok 5 en az 1 adet string bulunan diziler bulunmaktadır. Aşağıdaki görevlerde aksi belirtilmedikçe bu dizi kullanılacaktır.
 
@@ -104,12 +119,23 @@ var bircumle;
 	*/
 	
 
-function cumlelereDonustur(/* kodlar buraya */ ){
-	/* kodlar buraya */
+function cumlelereDonustur(ar1,str = ",") {
+ ar1 = [];
+	
+let arr = ar1.map(function(ar1) {  
+		
+		for(let i = 0; i < ar1.length; i++)
+
+		text = ar1.join(",")
+	
+		return text
+
+	})
+
 }
 
-
-
+console.log("1",cumlelereDonustur(cumleler, " ")) 
+          
 /* GÖREV 2:
 		paragrafOlustur fonksiyonuna aşağıdakileri uygulayın.
 			1. cumleler dizisi fonksiyonun birinci parametresi olarak alınacak
@@ -120,8 +146,10 @@ function cumlelereDonustur(/* kodlar buraya */ ){
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(/* kodlar buraya */ ){
-	/* kodlar buraya */ 
+function paragrafOlustur(newar, callback, callback1){
+	let a = [];
+
+
 }
 
 
@@ -130,33 +158,44 @@ function paragrafOlustur(/* kodlar buraya */ ){
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
 //3a çözümü
-/* kodlar buraya */
 
+// 1.yol 
+
+let new1 = meyveler.pop()  ;
+
+let new2 = meyveler.shift();
+
+console.log("3a", meyveler)
+
+// 2. yol 
+
+/* let new1 = meyveler.pop() + meyveler.shift();
+
+console.log("3a", meyveler); /*
 
 
 
 
  
-/* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı oldu. Tavşanı dizinin ilk elemanına 🐇, Kirpiyi dizinin son elemanına ekleyin 🦔 
+/* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan =>  , Kirpi=> 🦔 , Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı oldu. Tavşanı dizinin ilk elemanına 🐇, Kirpiyi dizinin son elemanına ekleyin 🦔 
 */
 //3b çözümü
-/* kodlar buraya */
 
+let sebzeler2 = sebzeler.unshift("🐇") + sebzeler.push("🦔")
 
-
-
-
-
+console .log("3b", sebzeler)
 
 
 /* 			3c. manav isminde bir dizi oluşturun.`meyveler` dizisi ilk elemanlara, `sebzeler` dizisi son elemanlara denk gelecek şekilde, iki diziyi birleştirip sonucu manav dizisine aktarın. (.concat metodu)
 	*/
-	//3c çözümü
-/* kodlar buraya */
-
+	
 var manav;
 
+manav = [];
 
+manav = meyveler.concat(sebzeler);
+
+console.log("3c", manav)
 
 
 
@@ -170,10 +209,22 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */){
-/* kodlar buraya */
+function emojileriDonustur(atilanmesaj, emojinesne) {
 
-}
+	atilanmesaj = " ";
+
+    for(let i = 0; i < emojinesne.length; i++)
+
+	if (text == atilanmesaj || text == atilanmesaj.toUpperCase()) {
+
+		let arr = atilanmesaj.replaceAll("text", "emojinesne")
+
+		return arr
+
+	}
+	}
+
+ console.log("4", emojileriDonustur(":)", emojiler))
 
 
 
