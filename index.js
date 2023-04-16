@@ -91,19 +91,13 @@ console.log(cumleKur(para2, para3))
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
 
-let x = "Ben "
-let y = "iyi "
-let z = "bir "
-let a = "yazılımcı "
-let b = "olacağım!"
 
-console.log(cumleKur(x, y, z, a, b))
-
-bircumle = function cumleKur() {
+bircumle = function cumleKur(x, y = "Ben iyi", z ="bir", a = "yazılımcı", b = "olacağım!") {
 	return x + y + z + a + b
+	
 }
 
-console.log(bircumle)
+console.log("1önce", bircumle)
 
 //		Sayfanın en üstünde global olarak tanımlanmış `cumleler` adında bir dizi bulunmaktadır. Bu dizinin içinde en çok 5 en az 1 adet string bulunan diziler bulunmaktadır. Aşağıdaki görevlerde aksi belirtilmedikçe bu dizi kullanılacaktır.
 
@@ -117,9 +111,18 @@ console.log(bircumle)
 			4. Oluşturulan her cümle yeni bir dizi oluşturulup o dizinin içine aktarılacak. 
 			5. Oluşturulan yeni dizi döndürülecek.
 	*/
+	//1.yol (doğru yol)
+
+    function cumlelereDonustur(ar1, str = ",") {
+     let yeniarr = ar1.map((sonuc) => sonuc.join(str));
+	 return yeniarr;
+	}
+	
+	console.log(cumlelereDonustur(cumleler, " "));
 	
 
-function cumlelereDonustur(ar1,str = ",") {
+ /* 2. yol (yanlış yol)
+	function cumlelereDonustur(ar1,str = ",") {
  ar1 = [];
 	
 let arr = ar1.map(function(ar1) {  
@@ -146,12 +149,43 @@ console.log("1",cumlelereDonustur(cumleler, " "))
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(newar, callback, callback1){
-	let a = [];
+function paragrafOlustur(newar, callback, callback1) {
+	let cumleDizi = callback1(newar, " ");
+	let anahtar = [1, 3, 5, 7, 9];
+	let paragraf = anahtar
+	.map((ayse, ind) => callback(cumleDizi[ayse]))
+	.join("");
 
-
+	return paragraf;
 }
 
+console.log(paragrafOlustur(cumleler, cumleKur, cumlelereDonustur));
+
+	
+
+
+
+/* 2.yol 
+
+function paragrafOlustur(array, cumleKurCall, cumleDonCall) {
+  let cumle = cumleDonCall(array, " ");
+  console.log("cumle", cumle);
+  //   let parag = cumleKurCall(cumle[1], cumle[3], cumle[5], cumle[7], cumle[9]);
+  let anahtarlar = [1, 3, 5, 7, 9];
+  let parag = [];
+  //   anahtarlar.forEach((enaktar) => {
+  //     parag.push(cumleKurCall(cumle[enaktar]));
+  //   });
+  // 3.yol - 2.yoldan farkı foreach yerine for kullanmamız; for each öncesi aynı 
+  for (let i = 1; i < 10; i += 2) {
+    console.log("testten kalık", cumle[i]);
+    parag.push(cumleKurCall(cumle[i]));
+  }
+
+  return parag.join("");
+}
+
+console.log("Görev2", paragrafOlustur(cumleler, cumleKur, cumlelereDonustur));
 
 /* 	GÖREV 3:
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
@@ -209,15 +243,79 @@ console.log("3c", manav)
 			4. elde edilen string döndürülecek
  */
 
+function emojileriDonustur(emoCumle, emolist) {
+
+	  
+		const regexSmile = /:d/gi;
+	  
+		for (let emoji in emolist) {
+		  // "Selam :) Nasılsın :d :D Bugünkü olay çok komikti :P ama sonra çok şaşırdık 😱 biraz da üzüldük :( ama yine de seviliyorsun <3"
+		  emoCumle = emoCumle.replaceAll(emoji.toUpperCase(), emolist[emoji]);
+		  // Selam 🙂 Nasılsın :d 😁 Bugünkü olay çok komikti 😛 ama sonra çok şaşırdık 😱 biraz da üzüldük 😔 ama yine de seviliyorsun ❤️,
+		  emoCumle = emoCumle.replaceAll(emoji, emolist[emoji]);
+		}
+	  
+		return emoCumle;
+	  }
+	  
+	  console.log(
+		emojileriDonustur(
+		  "Selam :) Nasılsın :d :D Bugünkü olay çok komikti :P ama sonra çok şaşırdık 😱 biraz da üzüldük :( ama yine de seviliyorsun <3",
+		  emojiler
+		)
+	  );
+
+ // 2. yol
+
+ /*function emojileriDonustur(emoCumle, emoList) {
+	console.log("s1", Object.entries(emoList));
+	console.log("s2", Object.entries(emoList)[0]);
+	let result = emoCumle;
+	for (const [shortCode, emoji] of Object.entries(emoList)) {
+	  result = result.replaceAll(shortCode, emoji);
+	  result = result.replaceAll(shortCode.toUpperCase(), emoji);
+	}
+  
+	return result;
+  }
+  
+  console.log(
+	emojileriDonustur(
+	  "Selam :) Nasılsın :d :D Bugünkü olay çok komikti :P ama sonra çok şaşırdık 😱 biraz da üzüldük :( ama yine de seviliyorsun <3",
+	  emojiler
+	)
+  ); /*
+
+
+ /* 3.yol 
+ function emojileriDonustur(sourceText, emojoArray) {
+  /* kodlar buraya */
+  /*console.log("sourceText", sourceText);
+  const regexSmile = /:d/gi;
+
+  //   sourceText = sourceText.replaceAll(regexSmile, "😁");
+  /*sourceText = sourceText.replace(regexSmile, "😁");
+  console.log("sourceText", sourceText);
+}
+
+console.log(
+  emojileriDonustur(
+    "Selam :) Nasılsın :d :D Bugünkü olay çok komikti :P ama sonra çok şaşırdık 😱 biraz da üzüldük :( ama yine de seviliyorsun <3",
+    emojiler
+  )
+); /*
+
+// 4.yol (yanlış yol)
+
 function emojileriDonustur(atilanmesaj, emojinesne) {
 
 	atilanmesaj = " ";
 
     for(let i = 0; i < emojinesne.length; i++)
 
-	if (text == atilanmesaj || text == atilanmesaj.toUpperCase()) {
+	if (i == atilanmesaj || i == atilanmesaj.toUpperCase()) {
 
-		let arr = atilanmesaj.replaceAll("text", "emojinesne")
+		let arr = atilanmesaj.replaceAll("i", "emojinesne")
 
 		return arr
 
@@ -225,8 +323,6 @@ function emojileriDonustur(atilanmesaj, emojinesne) {
 	}
 
  console.log("4", emojileriDonustur(":)", emojiler))
-
-
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 function sa(){
